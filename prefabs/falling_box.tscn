@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4ne15jhk4he"]
+
+[ext_resource type="Script" path="res://code/falling_box.gd" id="1_d0qda"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ldmt"]
+size = Vector3(5, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p1y1d"]
+size = Vector3(5, 1, 1)
+
+[node name="FallingBox" type="RigidBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+linear_damp_mode = 1
+script = ExtResource("1_d0qda")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5ldmt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_p1y1d")

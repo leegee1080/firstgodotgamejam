@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=3 uid="uid://ve7lw2rh4k4h"]
+
+[ext_resource type="PackedScene" uid="uid://b4ne15jhk4he" path="res://prefabs/falling_box.tscn" id="1_h4bth"]
+[ext_resource type="Script" path="res://code/game_scene.gd" id="1_l0acd"]
+[ext_resource type="PackedScene" uid="uid://r04jrobwmjv5" path="res://prefabs/player_character.tscn" id="2_8ac38"]
+[ext_resource type="PackedScene" uid="uid://2v2qchj8a48r" path="res://prefabs/bound.tscn" id="2_oox2u"]
+
+[sub_resource type="Curve3D" id="Curve3D_wnil3"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -8.39507, 11.5151, 0, 0, 0, 0, 0, 0, 0, -8.51313, 1.16579, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_vbag7"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aibxm"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="Environment" id="Environment_c8lb1"]
+glow_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_kp0n0"]
+
+[node name="game_scene" type="Node3D"]
+script = ExtResource("1_l0acd")
+plat_scene = ExtResource("1_h4bth")
+metadata/PLAT_HEIGHT_MAX = 10
+metadata/PLAT_HEIGHT_MIN = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="EnviornmentObjects" type="Node3D" parent="."]
+
+[node name="SpawnPath" type="Path3D" parent="EnviornmentObjects"]
+curve = SubResource("Curve3D_wnil3")
+
+[node name="SpawnLocation" type="PathFollow3D" parent="EnviornmentObjects/SpawnPath"]
+transform = Transform3D(-4.40473e-08, 0.999935, 0.0114041, -5.88199e-08, -0.0114041, 0.999935, 1, 4.33733e-08, 5.93184e-08, -8.39507, 11.5151, 0)
+
+[node name="Bounds" type="Node3D" parent="EnviornmentObjects"]
+
+[node name="TopBound" parent="EnviornmentObjects/Bounds" instance=ExtResource("2_oox2u")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 15, 0)
+
+[node name="BottomBound" parent="EnviornmentObjects/Bounds" instance=ExtResource("2_oox2u")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -15, 0)
+
+[node name="LeftBound" parent="EnviornmentObjects/Bounds" instance=ExtResource("2_oox2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+
+[node name="RightBound" parent="EnviornmentObjects/Bounds" instance=ExtResource("2_oox2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+
+[node name="Floor" type="StaticBody3D" parent="EnviornmentObjects"]
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnviornmentObjects/Floor"]
+mesh = SubResource("BoxMesh_vbag7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnviornmentObjects/Floor"]
+shape = SubResource("BoxShape3D_aibxm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="EnviornmentObjects"]
+environment = SubResource("Environment_c8lb1")
+camera_attributes = SubResource("CameraAttributesPractical_kp0n0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="EnviornmentObjects"]
+transform = Transform3D(0.965926, 0.0669873, -0.25, 0.183013, 0.506236, 0.842752, 0.183013, -0.859789, 0.476727, 0, 8, 3)
+shadow_enabled = true
+shadow_opacity = 0.8
+shadow_blur = 2.0
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="FallingBox" parent="Platforms" instance=ExtResource("1_h4bth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.33084, 0)
+gravity_scale = 0.0
+linear_velocity = Vector3(1, 0, 0)
+
+[node name="play_character" parent="." instance=ExtResource("2_8ac38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.78629, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
