@@ -30,7 +30,8 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	queue_free()
+	if is_floating:
+		queue_free()
 	pass
 
 
