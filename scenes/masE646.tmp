@@ -6,8 +6,8 @@
 [node name="master_scene" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.993136, -0.116966, 0, 0.116966, 0.993136, 0, 3.32124, 9.0515)
+transform = Transform3D(1, 0, 0, 0, 0.993136, -0.116966, 0, 0.116966, 0.993136, 0, 3.32124, 6.945)
 script = ExtResource("1_11y3f")
-lerp_speed = 1.0
+lerp_speed = 5.0
 
 [node name="game_scene" parent="." instance=ExtResource("1_m6kg0")]

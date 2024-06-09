@@ -13,5 +13,8 @@ func _process(delta):
 
 
 func _on_body_entered(body):
+	if body.name == "play_character":
+		body.messagefirst_queuefree()
+		return
 	body.queue_free()
 	pass # Replace with function body.

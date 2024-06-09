@@ -7,6 +7,10 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_jhevy"]
 
 [node name="play_character" type="CharacterBody3D"]
+collision_layer = 15
+collision_mask = 15
+axis_lock_linear_z = true
+axis_lock_angular_z = true
 script = ExtResource("1_swhr3")
 metadata/_edit_group_ = true
 

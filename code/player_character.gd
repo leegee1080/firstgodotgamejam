@@ -1,17 +1,22 @@
 extends CharacterBody3D
 
+@export var game_scene: Node3D
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 8.5
+const JUMP_VELOCITY = 20
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func messagefirst_queuefree():
+	game_scene.player_die()
+	queue_free()
+	pass
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		velocity.y -= gravity *2 * delta
 
 	# Handle jump. press jump in air to rapid drop
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():

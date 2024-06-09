@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4ne15jhk4he"]
+[gd_scene load_steps=5 format=3 uid="uid://b4ne15jhk4he"]
 
 [ext_resource type="Script" path="res://code/falling_box.gd" id="1_d0qda"]
 
@@ -8,12 +8,19 @@ size = Vector3(5, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_p1y1d"]
 size = Vector3(5, 1, 1)
 
-[node name="FallingBox" type="RigidBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_mqvb6"]
+size = Vector3(5.1, 0.1, 1.1)
+
+[node name="FallingBox" type="RigidBody3D" node_paths=PackedStringArray("Area3d")]
+collision_layer = 8
+collision_mask = 13
+axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
-axis_lock_angular_z = true
+gravity_scale = 2.0
 linear_damp_mode = 1
 script = ExtResource("1_d0qda")
+Area3d = NodePath("Area3D")
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -21,3 +28,18 @@ mesh = SubResource("BoxMesh_5ldmt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_p1y1d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.461816, 0)
+shape = SubResource("BoxShape3D_mqvb6")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
