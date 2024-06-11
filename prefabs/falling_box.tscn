@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4ne15jhk4he"]
+[gd_scene load_steps=6 format=3 uid="uid://b4ne15jhk4he"]
 
 [ext_resource type="Script" path="res://code/falling_box.gd" id="1_d0qda"]
 
@@ -11,6 +11,9 @@ size = Vector3(5, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mqvb6"]
 size = Vector3(5.1, 0.1, 1.1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_s54av"]
+size = Vector3(5.5, 1.5, 1.5)
+
 [node name="FallingBox" type="RigidBody3D" node_paths=PackedStringArray("Area3d")]
 collision_layer = 8
 collision_mask = 13
@@ -20,7 +23,7 @@ axis_lock_angular_y = true
 gravity_scale = 2.0
 linear_damp_mode = 1
 script = ExtResource("1_d0qda")
-Area3d = NodePath("Area3D")
+Area3d = NodePath("PlayerCollideArea")
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -33,13 +36,26 @@ shape = SubResource("BoxShape3D_p1y1d")
 wait_time = 30.0
 autostart = true
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="PlatformCheckTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="PlayerCollideArea" type="Area3D" parent="."]
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCollideArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.461816, 0)
 shape = SubResource("BoxShape3D_mqvb6")
 
+[node name="WorldCollideArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldCollideArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0249023, -0.183167, 0)
+shape = SubResource("BoxShape3D_s54av")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="PlatformCheckTimer" to="." method="_on_platform_check_timer_timeout"]
+[connection signal="body_entered" from="PlayerCollideArea" to="." method="_on_player_collide_area_body_entered"]
+[connection signal="body_entered" from="WorldCollideArea" to="." method="_on_world_collide_area_body_entered"]

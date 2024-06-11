@@ -28,15 +28,25 @@ func _process(delta):
 		position.x += (MOVE_SPEED * movedir)
 	pass
 
+func lock_platform():
+	set_freeze_enabled(true)
 
 func _on_timer_timeout():
 	if is_floating:
 		queue_free()
 	pass
 
+func _on_platform_check_timer_timeout():
+	lock_platform()
+	pass
 
-func _on_area_3d_body_entered(body):
+func _on_player_collide_area_body_entered(body):
 	Area3d.queue_free()
 	is_floating = false
 	set_freeze_enabled(false)
+	pass
+
+
+func _on_world_collide_area_body_entered(body):
+	$PlatformCheckTimer.start()
 	pass
