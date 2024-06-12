@@ -6,7 +6,7 @@
 [node name="master_scene" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.993136, -0.116966, 0, 0.116966, 0.993136, 0, 3.32124, 17.0199)
+transform = Transform3D(1, 0, 0, 0, 0.993136, -0.116966, 0, 0.116966, 0.993136, 0, 3.32124, 11.0199)
 script = ExtResource("1_11y3f")
 lerp_speed = 3.0
 

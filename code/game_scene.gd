@@ -18,8 +18,6 @@ func _ready():
 	
 	camera = get_parent_node_3d().get_child(0)
 	
-	print(camera.name)
-	
 	camera_script = camera.get_script()
 	
 	camera.start_follow($play_character)

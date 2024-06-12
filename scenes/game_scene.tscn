@@ -20,7 +20,7 @@ glow_enabled = true
 script = ExtResource("1_l0acd")
 plat_scene = ExtResource("1_h4bth")
 metadata/PLAT_HEIGHT_MAX = 4
-metadata/PLAT_HEIGHT_MIN = 0
+metadata/PLAT_HEIGHT_MIN = 1
 metadata/plat_left_x = -20.0
 metadata/plat_right_x = 20.0
 
@@ -33,7 +33,7 @@ autostart = true
 [node name="Bounds" type="Node3D" parent="EnviornmentObjects"]
 
 [node name="BottomBound" parent="EnviornmentObjects/Bounds" instance=ExtResource("2_oox2u")]
-transform = Transform3D(-8.74228e-07, -20, 0, 20, -8.74228e-07, 0, 0, 0, 20, 0, -15, 0)
+transform = Transform3D(-8.74228e-07, -20, 0, 20, -8.74228e-07, 0, 0, 0, 20, 0, -34, 0)
 collision_layer = 15
 collision_mask = 15
 
