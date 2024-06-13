@@ -13,6 +13,7 @@ var camera_script
 
 @export var plat_scene: PackedScene
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	

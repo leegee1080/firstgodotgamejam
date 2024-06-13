@@ -5,6 +5,12 @@ var move_dir_left
 
 var is_floating
 
+var chosen_color: color_choice_class
+
+class color_choice_class:
+	@export var This_Color: Color
+	@export var This_Number: int
+
 @export var Area3d: Area3D
  
 # Called when the node enters the scene tree for the first time.
