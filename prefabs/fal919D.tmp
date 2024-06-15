@@ -17,9 +17,9 @@ size = Vector3(5.1, 0.1, 1.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s54av"]
 size = Vector3(5.5, 1.5, 1.5)
 
-[node name="FallingBox" type="RigidBody3D" groups=["platforms"]]
+[node name="FallingBox" type="RigidBody3D"]
 collision_layer = 8
-collision_mask = 15
+collision_mask = 13
 axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -51,7 +51,7 @@ shape = SubResource("BoxShape3D_mqvb6")
 
 [node name="WorldCollideArea" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WorldCollideArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0249023, -0.183167, 0)

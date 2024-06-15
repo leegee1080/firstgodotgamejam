@@ -21,8 +21,8 @@ script = ExtResource("1_l0acd")
 plat_scene = ExtResource("1_h4bth")
 metadata/PLAT_HEIGHT_MAX = 4
 metadata/PLAT_HEIGHT_MIN = 1
-metadata/plat_left_x = -20.0
-metadata/plat_right_x = 20.0
+metadata/plat_left_x = -50.0
+metadata/plat_right_x = 50.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
@@ -34,12 +34,12 @@ autostart = true
 
 [node name="BottomBound" parent="EnviornmentObjects/Bounds" instance=ExtResource("2_oox2u")]
 transform = Transform3D(-8.74228e-07, -20, 0, 20, -8.74228e-07, 0, 0, 0, 20, 0, -34, 0)
-collision_layer = 15
+collision_layer = 0
 collision_mask = 15
 
 [node name="Floor" type="StaticBody3D" parent="EnviornmentObjects"]
 collision_layer = 4
-collision_mask = 15
+collision_mask = 0
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnviornmentObjects/Floor"]

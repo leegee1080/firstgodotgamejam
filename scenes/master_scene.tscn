@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbot33rguub1a"]
+[gd_scene load_steps=4 format=3 uid="uid://cbot33rguub1a"]
 
 [ext_resource type="Script" path="res://code/FollowCam.gd" id="1_11y3f"]
 [ext_resource type="PackedScene" uid="uid://ve7lw2rh4k4h" path="res://scenes/game_scene.tscn" id="1_m6kg0"]
+[ext_resource type="Script" path="res://code/master_scene.gd" id="1_y7naq"]
 
 [node name="master_scene" type="Node3D"]
+script = ExtResource("1_y7naq")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.993136, -0.116966, 0, 0.116966, 0.993136, 0, 3.32124, 17.0199)
