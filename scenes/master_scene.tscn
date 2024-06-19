@@ -22,3 +22,5 @@ script = ExtResource("1_11y3f")
 Lerp_Speed = 1.0
 
 [node name="game_scene" parent="." instance=ExtResource("1_m6kg0")]
+
+[connection signal="main_menu_signal_next_menu" from="MenuController/MainMenuContainer" to="MenuController" method="_on_main_menu_container_main_menu_signal_next_menu"]
