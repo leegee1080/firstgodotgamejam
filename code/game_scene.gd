@@ -19,7 +19,7 @@ signal spawned_platform(Platform)
 
 func _ready():
 	
-	camera = get_parent_node_3d().get_child(0)
+	camera = $"..".camera
 	
 	selected_colors = $"..".avail_colors_dict[$"..".selected_colors]
 	

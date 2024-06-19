@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbot33rguub1a"]
+[gd_scene load_steps=6 format=3 uid="uid://cbot33rguub1a"]
 
 [ext_resource type="Script" path="res://code/FollowCam.gd" id="1_11y3f"]
 [ext_resource type="PackedScene" uid="uid://ve7lw2rh4k4h" path="res://scenes/game_scene.tscn" id="1_m6kg0"]
 [ext_resource type="Script" path="res://code/master_scene.gd" id="1_y7naq"]
-[ext_resource type="PackedScene" uid="uid://c4luiox7jushy" path="res://scenes/menu_controller.tscn" id="4_locq8"]
+[ext_resource type="PackedScene" uid="uid://c4luiox7jushy" path="res://prefabs/menu_visual_container.tscn" id="4_locq8"]
+[ext_resource type="PackedScene" uid="uid://cqhqmmj2hslvf" path="res://prefabs/menu_controller.tscn" id="5_5iibh"]
 
-[node name="master_scene" type="Node3D"]
+[node name="master_scene" type="Node3D" node_paths=PackedStringArray("menu_control", "camera")]
 script = ExtResource("1_y7naq")
+menu_control = NodePath("MenuController")
+camera = NodePath("Camera3D")
+
+[node name="MenuController" parent="." node_paths=PackedStringArray("menu_array") instance=ExtResource("5_5iibh")]
+menu_array = [NodePath("MainMenuContainer"), null, null, null, null]
+
+[node name="MainMenuContainer" parent="MenuController" instance=ExtResource("4_locq8")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.993136, -0.116966, 0, 0.116966, 0.993136, 0, 3.32124, 17.0199)
@@ -14,5 +22,3 @@ script = ExtResource("1_11y3f")
 Lerp_Speed = 1.0
 
 [node name="game_scene" parent="." instance=ExtResource("1_m6kg0")]
-
-[node name="MenuController" parent="." instance=ExtResource("4_locq8")]

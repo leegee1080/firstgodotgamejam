@@ -9,3 +9,6 @@ var avail_colors_dict = {
 var selected_colors: color_set_names_enum = color_set_names_enum.NORMAL
 #COLOR VARS END
 
+@export var menu_control: MenuController
+@export var camera: Camera3D
+
