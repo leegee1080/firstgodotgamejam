@@ -4,18 +4,23 @@ var is_following
 var target_node: CharacterBody3D
 
 @export var Lerp_Speed: float
+@export var Home_Node: Node3D
+
+var home_pos
+
+func _ready():
+	home_pos = self.position
 
 func start_follow(node):
 	is_following = true
 	target_node = node
-	pass
 
 func stop_follow():
 	is_following = false
-	pass
-
-func _ready():
-	pass # Replace with function body.
+	
+func go_home():
+	is_following = false
+	self.position = home_pos
 
 func _process(delta):
 	if is_following and target_node != null:
@@ -29,4 +34,3 @@ func _process(delta):
 
 		# Update the camera's position
 		position = current_pos
-	pass

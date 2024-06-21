@@ -10,17 +10,19 @@
 script = ExtResource("1_y7naq")
 menu_control = NodePath("MenuController")
 camera = NodePath("Camera3D")
+game_scene = ExtResource("1_m6kg0")
 
 [node name="MenuController" parent="." node_paths=PackedStringArray("menu_array") instance=ExtResource("5_5iibh")]
 menu_array = [NodePath("MainMenuContainer"), null, null, null, null]
 
 [node name="MainMenuContainer" parent="MenuController" instance=ExtResource("4_locq8")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("Home_Node")]
 transform = Transform3D(1, 0, 0, 0, 0.993136, -0.116966, 0, 0.116966, 0.993136, 0, 3.32124, 17.0199)
 script = ExtResource("1_11y3f")
 Lerp_Speed = 1.0
+Home_Node = NodePath("../CameraHomeNode")
 
-[node name="game_scene" parent="." instance=ExtResource("1_m6kg0")]
+[node name="CameraHomeNode" type="Node3D" parent="."]
 
 [connection signal="main_menu_signal_next_menu" from="MenuController/MainMenuContainer" to="MenuController" method="_on_main_menu_container_main_menu_signal_next_menu"]

@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Saturday Game Jam"
-run/main_scene="res://scenes/master_scene.tscn"
+run/main_scene="res://scenes/Empty_Node.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MasterScene="*res://scenes/master_scene.tscn"
 
 [layer_names]
 

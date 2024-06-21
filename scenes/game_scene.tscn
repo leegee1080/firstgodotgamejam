@@ -16,9 +16,10 @@ glow_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_kp0n0"]
 
-[node name="game_scene" type="Node3D"]
+[node name="game_scene" type="Node3D" node_paths=PackedStringArray("starting_platform")]
 script = ExtResource("1_l0acd")
 plat_scene = ExtResource("1_h4bth")
+starting_platform = NodePath("EnviornmentObjects/Floor")
 metadata/PLAT_HEIGHT_MAX = 4
 metadata/PLAT_HEIGHT_MIN = 1
 metadata/plat_left_x = -50.0

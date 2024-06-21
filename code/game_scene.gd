@@ -12,6 +12,7 @@ var camera: Node3D
 var camera_script
 
 @export var plat_scene: PackedScene
+@export var starting_platform: Node3D
 
 var selected_colors
 signal spawned_platform(Platform)
@@ -42,9 +43,15 @@ func _process(_delta):
 func player_die():
 	print("Player Dead, Gameover.")
 	player_dead = true
+	camera.go_home()
+	var MC: MenuController = get_parent().get_node("MenuController")
+	MC.change_menu(MC.Menus.Main)
+	self.queue_free()
 
 
 func _on_timer_timeout():
+	if player_dead:
+		return
 	var new_plat = plat_scene.instantiate()
 	new_plat.set_name("Platform")
 	
@@ -60,4 +67,3 @@ func _on_timer_timeout():
 	get_node("Platforms").add_child(new_plat)
 	
 	spawned_platform.emit(new_plat.get_script())
-
