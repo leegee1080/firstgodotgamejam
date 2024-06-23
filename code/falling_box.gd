@@ -11,6 +11,8 @@ var selected_color: Color = Color.WHITE
 
 var mesh: MeshInstance3D
 
+@export var particle: CPUParticles3D
+
 var friend_platform
 
 func initialize(pos, color):
@@ -64,7 +66,11 @@ func _on_platform_check_timer_timeout():
 
 func lock_platform():
 	#set_freeze_enabled(true)
+	if friend_platform == null:
+		return null
 	var pin = PinJoint3D.new()
 	pin.node_a = self.get_path()
 	pin.node_b = friend_platform.get_path()
+#	particle.position = pin.position
+	particle.emitting = true
 	add_child(pin)

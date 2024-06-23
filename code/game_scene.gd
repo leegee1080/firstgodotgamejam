@@ -11,7 +11,7 @@ var player_dead = false
 var camera: Node3D
 var camera_script
 
-@export var plat_scene: PackedScene
+@export var plat_scene: Array[PackedScene]
 @export var starting_platform: Node3D
 
 var selected_colors
@@ -52,7 +52,8 @@ func player_die():
 func _on_timer_timeout():
 	if player_dead:
 		return
-	var new_plat = plat_scene.instantiate()
+	var r = randi_range(0, plat_scene.size()-1)
+	var new_plat = plat_scene[r].instantiate()
 	new_plat.set_name("Platform")
 	
 	var xspawn = plat_x_left

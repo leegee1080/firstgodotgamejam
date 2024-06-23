@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4ne15jhk4he"]
+
+[ext_resource type="Script" path="res://code/falling_box.gd" id="1_vgrho"]
+[ext_resource type="ArrayMesh" uid="uid://c0x8fjrbvj2xr" path="res://assets/Blender/Stick.obj" id="2_be870"]
+[ext_resource type="Texture2D" uid="uid://dhi72f7voxt8o" path="res://addons/kenney_particle_pack/star_08.png" id="3_hkel1"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t1aqp"]
+points = PackedVector3Array(1, 1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -7.04237, -1, -1, 1, -1, 1, -7.04237, 1, -1, -7.04237, -1, -1, -7.04237)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mqvb6"]
+size = Vector3(8.15189, 0.1, 1.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s54av"]
+size = Vector3(8.13977, 2.125, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jopy"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_hkel1")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ex0c1"]
+
+[sub_resource type="Gradient" id="Gradient_gl8gm"]
+offsets = PackedFloat32Array(0, 0.75)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="FallingBox" type="RigidBody3D" node_paths=PackedStringArray("particle") groups=["platforms"]]
+collision_layer = 8
+collision_mask = 15
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+gravity_scale = 2.0
+linear_damp_mode = 1
+script = ExtResource("1_vgrho")
+particle = NodePath("Sparkle")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, -0.5, 0)
+mesh = ExtResource("2_be870")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, -0.5, 0)
+shape = SubResource("ConvexPolygonShape3D_t1aqp")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[node name="PlatformCheckTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="PlayerCollideArea" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCollideArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00380218, 0.461816, 0)
+shape = SubResource("BoxShape3D_mqvb6")
+
+[node name="WorldCollideArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldCollideArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0332642, -0.495667, 0)
+shape = SubResource("BoxShape3D_s54av")
+
+[node name="Sparkle" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+material_override = SubResource("StandardMaterial3D_1jopy")
+cast_shadow = 0
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("QuadMesh_ex0c1")
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 0)
+spread = 100.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 3.0
+color = Color(1, 1, 0.203922, 1)
+color_ramp = SubResource("Gradient_gl8gm")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PlatformCheckTimer" to="." method="_on_platform_check_timer_timeout"]
+[connection signal="body_entered" from="PlayerCollideArea" to="." method="_on_player_collide_area_body_entered"]
+[connection signal="body_entered" from="WorldCollideArea" to="." method="_on_world_collide_area_body_entered"]
