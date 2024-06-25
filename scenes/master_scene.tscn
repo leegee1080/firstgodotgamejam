@@ -18,7 +18,7 @@ menu_array = [NodePath("MainMenuContainer"), null, null, null, null]
 [node name="MainMenuContainer" parent="MenuController" instance=ExtResource("4_locq8")]
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("Home_Node")]
-transform = Transform3D(1, 0, 0, 0, 0.993136, -0.116966, 0, 0.116966, 0.993136, 0, 3.32124, 17.0199)
+transform = Transform3D(1, 0, 0, 0, 0.993136, -0.116966, 0, 0.116966, 0.993136, 0, 3.32124, 19.0199)
 script = ExtResource("1_11y3f")
 Lerp_Speed = 1.0
 Home_Node = NodePath("../CameraHomeNode")

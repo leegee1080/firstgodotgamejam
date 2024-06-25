@@ -30,7 +30,7 @@ func _process(delta):
 
 		# Lerp the camera's position towards the target node's position
 		current_pos.x = lerp(current_pos.x, target_pos.x + (target_node.velocity.x/1), Lerp_Speed * delta)
-		current_pos.y = lerp(current_pos.y, target_pos.y + (target_node.velocity.y/3) + 4, Lerp_Speed * delta)
+		current_pos.y = lerp(current_pos.y, target_pos.y + (target_node.velocity.y/3) + 5, Lerp_Speed * delta)
 
 		# Update the camera's position
 		position = current_pos

@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://ve7lw2rh4k4h"]
+[gd_scene load_steps=13 format=3 uid="uid://ve7lw2rh4k4h"]
 
 [ext_resource type="Script" path="res://code/game_scene.gd" id="1_l0acd"]
 [ext_resource type="PackedScene" uid="uid://r04jrobwmjv5" path="res://prefabs/player_character.tscn" id="2_8ac38"]
 [ext_resource type="PackedScene" uid="uid://2v2qchj8a48r" path="res://prefabs/bound.tscn" id="2_oox2u"]
 [ext_resource type="PackedScene" uid="uid://b4ne15jhk4he" path="res://prefabs/falling_boxes/falling_box_basic.tscn" id="2_u8ofs"]
 [ext_resource type="PackedScene" uid="uid://b5blm4xqdeoj8" path="res://prefabs/falling_boxes/falling_box_Block.tscn" id="5_c8wv6"]
+[ext_resource type="PackedScene" uid="uid://cikqnfiojh27q" path="res://prefabs/falling_boxes/falling_box_Corner.tscn" id="5_rcpfg"]
 [ext_resource type="PackedScene" uid="uid://7yanmq1jrs54" path="res://prefabs/falling_boxes/falling_box_Elbow.tscn" id="6_aegt0"]
+[ext_resource type="PackedScene" uid="uid://o8a8b5humlf3" path="res://prefabs/falling_boxes/falling_box_Tee.tscn" id="6_ptcca"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vbag7"]
 size = Vector3(20, 4, 3)
@@ -20,10 +22,10 @@ glow_enabled = true
 
 [node name="game_scene" type="Node3D" node_paths=PackedStringArray("starting_platform")]
 script = ExtResource("1_l0acd")
-plat_scene = Array[PackedScene]([ExtResource("2_u8ofs"), ExtResource("5_c8wv6"), ExtResource("6_aegt0")])
+plat_scene = Array[PackedScene]([ExtResource("2_u8ofs"), ExtResource("5_c8wv6"), ExtResource("6_aegt0"), ExtResource("5_rcpfg"), ExtResource("6_ptcca")])
 starting_platform = NodePath("EnviornmentObjects/Floor")
-metadata/PLAT_HEIGHT_MAX = 6
-metadata/PLAT_HEIGHT_MIN = 4
+metadata/PLAT_HEIGHT_MAX = 7
+metadata/PLAT_HEIGHT_MIN = 5
 metadata/plat_left_x = -50.0
 metadata/plat_right_x = 50.0
 

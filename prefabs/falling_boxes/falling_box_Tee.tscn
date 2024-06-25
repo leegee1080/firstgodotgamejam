@@ -1,14 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://o8a8b5humlf3"]
+[gd_scene load_steps=11 format=3 uid="uid://o8a8b5humlf3"]
 
 [ext_resource type="Script" path="res://code/falling_box.gd" id="1_20s0m"]
 [ext_resource type="ArrayMesh" uid="uid://boxtpvfjdii47" path="res://assets/Blender/Tee.obj" id="2_b4lcl"]
 [ext_resource type="Texture2D" uid="uid://dhi72f7voxt8o" path="res://addons/kenney_particle_pack/star_08.png" id="2_gw2um"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hut3c"]
-points = PackedVector3Array(-1, -3, -1.00036, -1, -1.0002, -7.04237, 1, -3, -1.00036, -1, -3, 1, -1, 0.999609, -7.04237, 1, -1.0002, -7.04237, 1, -3, 1, -1, 3, 1, 1, 0.999609, -7.04237, -1, 3, -1.00036, 1, 3, 1, 1, 3, -1.00036)
+[sub_resource type="BoxShape3D" id="BoxShape3D_ujfmt"]
+size = Vector3(1, 5.90723, 1.95941)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r4mw6"]
+size = Vector3(1.97876, 6.39966, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mqvb6"]
-size = Vector3(6.02663, 0.1, 1.1)
+size = Vector3(5.82611, 6.14668, 1.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s54av"]
 size = Vector3(6.09595, 8.15527, 1.5)
@@ -27,7 +30,7 @@ offsets = PackedFloat32Array(0, 0.75)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="FallingBox" type="RigidBody3D" node_paths=PackedStringArray("particle") groups=["platforms"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00562906, 4.76837e-07, -0.00160766)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0.00562906, 4.76837e-07, -0.00160766)
 collision_layer = 8
 collision_mask = 15
 axis_lock_linear_z = true
@@ -44,8 +47,12 @@ transform = Transform3D(1.91069e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 
 mesh = ExtResource("2_b4lcl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.91069e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, 0, -4.37114e-08, 0, -0.5, 0)
-shape = SubResource("ConvexPolygonShape3D_hut3c")
+transform = Transform3D(1.91069e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, 0, -4.37114e-08, 0.0375977, -0.505219, 2.32831e-10)
+shape = SubResource("BoxShape3D_ujfmt")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0032959, -4.31042, 0)
+shape = SubResource("BoxShape3D_r4mw6")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 30.0
@@ -58,7 +65,7 @@ one_shot = true
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCollideArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0134366, 0.461816, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00438235, -4.50375, 0)
 shape = SubResource("BoxShape3D_mqvb6")
 
 [node name="WorldCollideArea" type="Area3D" parent="."]

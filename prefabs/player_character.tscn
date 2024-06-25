@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://code/player_character.gd" id="1_swhr3"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_7i2mo"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_13dj6"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jhevy"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qjdrl"]
 
 [node name="play_character" type="CharacterBody3D"]
 collision_mask = 15
@@ -15,7 +15,7 @@ script = ExtResource("1_swhr3")
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_7i2mo")
+mesh = SubResource("CapsuleMesh_13dj6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_jhevy")
+shape = SubResource("CapsuleShape3D_qjdrl")
