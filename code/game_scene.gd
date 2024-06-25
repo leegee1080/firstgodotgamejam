@@ -52,8 +52,14 @@ func player_die():
 func _on_timer_timeout():
 	if player_dead:
 		return
-	var r = randi_range(0, plat_scene.size()-1)
-	var new_plat = plat_scene[r].instantiate()
+	var new_plat
+	
+	var odd_block_chance = randi_range(0, 100)
+	if odd_block_chance > 90:
+		var r = randi_range(0, plat_scene.size()-1)
+		new_plat = plat_scene[r].instantiate()
+	
+	new_plat = plat_scene[0].instantiate()
 	new_plat.set_name("Platform")
 	
 	var xspawn = plat_x_left
