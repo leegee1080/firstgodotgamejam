@@ -6,11 +6,12 @@ const MOVE_SPEED = .1
 var move_dir_left
 
 var is_floating
+var is_locked
 
 var selected_color: Color = Color.WHITE
 
 var mesh: MeshInstance3D
-
+@export var main_collider_array: Array[CollisionShape3D]
 @export var particle: CPUParticles3D
 
 var friend_platform
@@ -20,6 +21,8 @@ func initialize(pos, color):
 	mesh = $MeshInstance3D
 	set_freeze_enabled(true)
 	is_floating = true
+	#for item in main_collider_array:
+		#item.disabled = true
 	position = pos
 	selected_color = color
 	if pos.x > 0:
@@ -49,6 +52,9 @@ func _on_timer_timeout():
 func _on_player_collide_area_body_entered(_body):
 	$PlayerCollideArea.queue_free()
 	is_floating = false
+	#for item in main_collider_array:
+		#item.disabled = false
+		#print(item)
 	set_freeze_enabled(false)
 
 
@@ -65,8 +71,7 @@ func _on_platform_check_timer_timeout():
 
 
 func lock_platform():
-	#set_freeze_enabled(true)
-	if friend_platform == null:
+	if friend_platform == null and !friend_platform.is_floating and !friend_platform.is_locked:
 		return null
 	var pin = PinJoint3D.new()
 	pin.node_a = self.get_path()
@@ -74,3 +79,4 @@ func lock_platform():
 #	particle.position = pin.position
 	particle.emitting = true
 	add_child(pin)
+	is_locked = true

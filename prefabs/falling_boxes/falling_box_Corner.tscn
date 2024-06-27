@@ -29,7 +29,7 @@ albedo_texture = ExtResource("3_gsvw5")
 offsets = PackedFloat32Array(0, 0.75)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="FallingBox" type="RigidBody3D" node_paths=PackedStringArray("particle") groups=["platforms"]]
+[node name="FallingBox" type="RigidBody3D" node_paths=PackedStringArray("main_collider_array", "particle") groups=["platforms"]]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0.00562906, 4.76837e-07, -0.00160766)
 collision_layer = 8
 collision_mask = 15
@@ -39,6 +39,7 @@ axis_lock_angular_y = true
 gravity_scale = 2.0
 linear_damp_mode = 1
 script = ExtResource("1_whipo")
+main_collider_array = [NodePath("CollisionShape3D"), NodePath("CollisionShape3D2")]
 particle = NodePath("Sparkle")
 metadata/_edit_group_ = true
 

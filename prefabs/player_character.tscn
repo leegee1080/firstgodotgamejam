@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://r04jrobwmjv5"]
+[gd_scene load_steps=5 format=3 uid="uid://r04jrobwmjv5"]
 
 [ext_resource type="Script" path="res://code/player_character.gd" id="1_swhr3"]
+[ext_resource type="PackedScene" uid="uid://c5t8imsrigllc" path="res://assets/Blender/Player/Robot.blend" id="2_3tet1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_13dj6"]
 
@@ -10,11 +11,16 @@
 collision_mask = 15
 axis_lock_linear_z = true
 axis_lock_angular_z = true
+wall_min_slide_angle = 0.0174533
 floor_block_on_wall = false
 script = ExtResource("1_swhr3")
 metadata/_edit_group_ = true
 
+[node name="Robot" parent="." instance=ExtResource("2_3tet1")]
+transform = Transform3D(0.365202, 0, 0, 0, 0.365202, 0, 0, 0, 0.365202, 0, -0.738858, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_13dj6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
