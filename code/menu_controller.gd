@@ -23,11 +23,15 @@ func _ready():
 
 func change_menu(next_menu_enum):
 	current_menu.set_visible(false)
-	if next_menu_enum == null:
+	if next_menu_enum == null or next_menu_enum == -1:
 		return
 	menu_dict[next_menu_enum].visible = true
 	current_menu = menu_dict[next_menu_enum]
 
 
-func _on_main_menu_container_main_menu_signal_next_menu():
-	change_menu(null)
+func _on_main_menu_container_main_menu_signal_next_menu(next_menu_int):
+	change_menu(next_menu_int)
+
+
+func _on_options_menu_controller_options_menu_signal_next_menu(next_menu_int):
+	change_menu(next_menu_int)
