@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbot33rguub1a"]
+[gd_scene load_steps=8 format=3 uid="uid://cbot33rguub1a"]
 
 [ext_resource type="Script" path="res://code/FollowCam.gd" id="1_11y3f"]
 [ext_resource type="PackedScene" uid="uid://ve7lw2rh4k4h" path="res://scenes/game_scene.tscn" id="1_m6kg0"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c4luiox7jushy" path="res://prefabs/menus/mainmenu_container.tscn" id="4_locq8"]
 [ext_resource type="PackedScene" uid="uid://cqhqmmj2hslvf" path="res://prefabs/menu_controller.tscn" id="5_5iibh"]
 [ext_resource type="PackedScene" uid="uid://ddp13hvkrkjeq" path="res://prefabs/menus/optionsmenu_container.tscn" id="5_6qpa4"]
+[ext_resource type="PackedScene" uid="uid://3uq0rlu45a2c" path="res://prefabs/menus/colorsmenu_container.tscn" id="6_7iyga"]
 
 [node name="master_scene" type="Node3D" node_paths=PackedStringArray("menu_control", "camera")]
 script = ExtResource("1_y7naq")
@@ -14,12 +15,14 @@ camera = NodePath("Camera3D")
 game_scene = ExtResource("1_m6kg0")
 
 [node name="MenuController" parent="." node_paths=PackedStringArray("menu_array") instance=ExtResource("5_5iibh")]
-menu_array = [NodePath("MainMenuContainer"), NodePath("Options\\MenuController"), null, null, null]
+menu_array = [NodePath("Main_MenuContainer"), NodePath("Options_MenuController"), null, null, null, NodePath("Colors_MenuController")]
 
-[node name="MainMenuContainer" parent="MenuController" instance=ExtResource("4_locq8")]
+[node name="Main_MenuContainer" parent="MenuController" instance=ExtResource("4_locq8")]
 
-[node name="Options\\MenuController" parent="MenuController" instance=ExtResource("5_6qpa4")]
+[node name="Options_MenuController" parent="MenuController" instance=ExtResource("5_6qpa4")]
 visible = false
+
+[node name="Colors_MenuController" parent="MenuController" instance=ExtResource("6_7iyga")]
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("Home_Node")]
 transform = Transform3D(1, 0, 0, 0, 0.993136, -0.116966, 0, 0.116966, 0.993136, 0, 3.32124, 19.0199)
@@ -29,5 +32,5 @@ Home_Node = NodePath("../CameraHomeNode")
 
 [node name="CameraHomeNode" type="Node3D" parent="."]
 
-[connection signal="main_menu_signal_next_menu" from="MenuController/MainMenuContainer" to="MenuController" method="_on_main_menu_container_main_menu_signal_next_menu"]
-[connection signal="options_menu_signal_next_menu" from="MenuController/Options\\MenuController" to="MenuController" method="_on_options_menu_controller_options_menu_signal_next_menu"]
+[connection signal="main_menu_signal_next_menu" from="MenuController/Main_MenuContainer" to="MenuController" method="_on_main_menu_container_main_menu_signal_next_menu"]
+[connection signal="options_menu_signal_next_menu" from="MenuController/Options_MenuController" to="MenuController" method="_on_options_menu_controller_options_menu_signal_next_menu"]
