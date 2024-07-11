@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dap56fea0t27g"]
+
+[ext_resource type="Script" path="res://code/controllers/sound_controller.gd" id="1_n7bxa"]
+
+[node name="sound_controller" type="Node3D"]
+script = ExtResource("1_n7bxa")

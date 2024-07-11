@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://ve7lw2rh4k4h"]
 
-[ext_resource type="Script" path="res://code/game_scene.gd" id="1_l0acd"]
+[ext_resource type="Script" path="res://code/controllers/game_scene.gd" id="1_l0acd"]
 [ext_resource type="PackedScene" uid="uid://r04jrobwmjv5" path="res://prefabs/player_character.tscn" id="2_8ac38"]
 [ext_resource type="PackedScene" uid="uid://2v2qchj8a48r" path="res://prefabs/bound.tscn" id="2_oox2u"]
 [ext_resource type="PackedScene" uid="uid://b4ne15jhk4he" path="res://prefabs/falling_boxes/falling_box_basic.tscn" id="2_u8ofs"]

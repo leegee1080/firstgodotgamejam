@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Saturday Game Jam"
-run/main_scene="res://scenes/Empty_Node.tscn"
+run/main_scene="res://scenes/Main_Empty_Node.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 

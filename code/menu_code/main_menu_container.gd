@@ -11,7 +11,6 @@ func _on_play_button_button_up():
 
 
 func _on_options_button_up():
-	print("options")
 	main_menu_signal_next_menu.emit(1)
 
 
