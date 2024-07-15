@@ -24,9 +24,11 @@ func _physics_process(delta):
 		
 	# Handle jump. press jump in air to rapid drop
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
+		MasterScene.play_sound(0)
 		velocity.y = JUMP_VELOCITY
 		has_jumped = true
 	if Input.is_action_just_pressed("Jump") and not is_on_floor() and has_jumped:
+		MasterScene.play_sound(0)
 		velocity.y = -JUMP_VELOCITY * 2
 
 	# Get the input direction and handle the movement/deceleration.

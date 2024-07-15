@@ -14,9 +14,14 @@ var selected_colors: color_set_names_enum = color_set_names_enum.NORMAL
 
 @export var game_scene: PackedScene
 
+@export var sound_controller: SoundController
+
 func _ready():
 	pass
 
 func start_new_game():
 	var new_game = game_scene.instantiate()
 	self.add_child(new_game)
+
+func play_sound(sound_index: int):
+	sound_controller.play_sound(sound_index)
