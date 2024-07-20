@@ -2,9 +2,9 @@ extends Node
 
 class_name MenuController
 
-enum Menus {Main, Options, Confirm, Pause, Credits}
+enum Menus {Main, Options, Confirm, Pause, Credits, Volume}
 
-@export_category("Order is: Main, Options, Confirm, Pause, Credits")
+@export_category("Order is: Main, Options, Confirm, Pause, Credits, Volume")
 @export var menu_array: Array[Control]
 
 var menu_dict
@@ -17,6 +17,7 @@ func _ready():
 		Menus.Confirm: menu_array[2],
 		Menus.Pause: menu_array[3],
 		Menus.Credits: menu_array[4],
+		Menus.Volume: menu_array[5],
 	}
 	current_menu = menu_dict[Menus.Main]
 
@@ -38,4 +39,8 @@ func _on_options_menu_controller_options_menu_signal_next_menu(next_menu_int):
 
 
 func _on_credits_menu_controller_credits_menu_signal_next_menu(next_menu_int):
+	change_menu(next_menu_int)
+
+
+func _on_volume_menu_controller_volume_menu_signal_next_menu(next_menu_int):
 	change_menu(next_menu_int)

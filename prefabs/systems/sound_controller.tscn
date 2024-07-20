@@ -7,4 +7,8 @@
 script = ExtResource("1_n7bxa")
 sound_array = Array[AudioStreamWAV]([ExtResource("2_tpces")])
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="FX_Container" type="Node" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="FX_Container"]
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer3D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbot33rguub1a"]
+[gd_scene load_steps=10 format=3 uid="uid://cbot33rguub1a"]
 
 [ext_resource type="Script" path="res://code/FollowCam.gd" id="1_11y3f"]
 [ext_resource type="PackedScene" uid="uid://ve7lw2rh4k4h" path="res://scenes/game_scene.tscn" id="1_m6kg0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cqhqmmj2hslvf" path="res://prefabs/systems/menu_controller.tscn" id="5_5iibh"]
 [ext_resource type="PackedScene" uid="uid://ddp13hvkrkjeq" path="res://prefabs/menus/optionsmenu_container.tscn" id="5_6qpa4"]
 [ext_resource type="PackedScene" uid="uid://dtgvjervcl7ai" path="res://prefabs/menus/creditsmenu_container.tscn" id="6_m2egf"]
+[ext_resource type="PackedScene" uid="uid://x8ars3vnv124" path="res://prefabs/menus/volumemenu_container.tscn" id="7_qkisg"]
 [ext_resource type="PackedScene" uid="uid://dap56fea0t27g" path="res://prefabs/systems/sound_controller.tscn" id="8_mqrlp"]
 
 [node name="master_scene" type="Node3D" node_paths=PackedStringArray("menu_control", "camera", "sound_controller")]
@@ -17,7 +18,7 @@ game_scene = ExtResource("1_m6kg0")
 sound_controller = NodePath("Camera3D/sound_controller")
 
 [node name="MenuController" parent="." node_paths=PackedStringArray("menu_array") instance=ExtResource("5_5iibh")]
-menu_array = [NodePath("Main_MenuContainer"), NodePath("Options_MenuController"), null, null, NodePath("Credits_MenuController")]
+menu_array = [NodePath("Main_MenuContainer"), NodePath("Options_MenuController"), null, null, NodePath("Credits_MenuController"), NodePath("Volume_MenuController")]
 
 [node name="Main_MenuContainer" parent="MenuController" instance=ExtResource("4_locq8")]
 
@@ -25,6 +26,9 @@ menu_array = [NodePath("Main_MenuContainer"), NodePath("Options_MenuController")
 visible = false
 
 [node name="Credits_MenuController" parent="MenuController" instance=ExtResource("6_m2egf")]
+visible = false
+
+[node name="Volume_MenuController" parent="MenuController" instance=ExtResource("7_qkisg")]
 visible = false
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("Home_Node")]
@@ -41,3 +45,4 @@ transform = Transform3D(1, 0, 0, 0, 0.993136, 0.116966, 0, -0.116966, 0.993136, 
 [connection signal="main_menu_signal_next_menu" from="MenuController/Main_MenuContainer" to="MenuController" method="_on_main_menu_container_main_menu_signal_next_menu"]
 [connection signal="options_menu_signal_next_menu" from="MenuController/Options_MenuController" to="MenuController" method="_on_options_menu_controller_options_menu_signal_next_menu"]
 [connection signal="credits_menu_signal_next_menu" from="MenuController/Credits_MenuController" to="MenuController" method="_on_credits_menu_controller_credits_menu_signal_next_menu"]
+[connection signal="volume_menu_signal_next_menu" from="MenuController/Volume_MenuController" to="MenuController" method="_on_volume_menu_controller_volume_menu_signal_next_menu"]

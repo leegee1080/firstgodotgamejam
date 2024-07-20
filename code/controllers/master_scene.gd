@@ -25,3 +25,9 @@ func start_new_game():
 
 func play_sound(sound_index: int):
 	sound_controller.play_sound(sound_index)
+
+func change_fx_volume(new_volume):
+	sound_controller.change_fx_volume(new_volume)
+
+func change_music_volume(new_volume):
+	sound_controller.change_music_volume(new_volume)
