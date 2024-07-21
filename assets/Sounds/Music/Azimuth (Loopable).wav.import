@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b6urcqjl7oaas"
+path="res://.godot/imported/Azimuth (Loopable).wav-d38cd53c0b3f97dfd0b8de6a58bb3fa0.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/Music/Azimuth (Loopable).wav"
+dest_files=["res://.godot/imported/Azimuth (Loopable).wav-d38cd53c0b3f97dfd0b8de6a58bb3fa0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
