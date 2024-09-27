@@ -32,15 +32,19 @@ func change_menu(next_menu_enum):
 
 func _on_main_menu_container_main_menu_signal_next_menu(next_menu_int):
 	change_menu(next_menu_int)
+	MasterScene.play_sound(2)
 
 
 func _on_options_menu_controller_options_menu_signal_next_menu(next_menu_int):
 	change_menu(next_menu_int)
+	MasterScene.play_sound(2)
 
 
 func _on_credits_menu_controller_credits_menu_signal_next_menu(next_menu_int):
 	change_menu(next_menu_int)
+	MasterScene.play_sound(2)
 
 
 func _on_volume_menu_controller_volume_menu_signal_next_menu(next_menu_int):
 	change_menu(next_menu_int)
+	MasterScene.play_sound(2)

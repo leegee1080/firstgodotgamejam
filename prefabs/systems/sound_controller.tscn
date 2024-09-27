@@ -1,14 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dap56fea0t27g"]
+[gd_scene load_steps=7 format=3 uid="uid://dap56fea0t27g"]
 
 [ext_resource type="Script" path="res://code/controllers/sound_controller.gd" id="1_n7bxa"]
 [ext_resource type="AudioStream" uid="uid://cdspx6jimka5l" path="res://assets/Sounds/whoosh_swish_small_01.wav" id="2_tpces"]
+[ext_resource type="AudioStream" uid="uid://d1cal18r7hvv6" path="res://assets/Sounds/coin.wav" id="3_rywon"]
+[ext_resource type="AudioStream" uid="uid://c5kffj1k5iexx" path="res://assets/Sounds/comical_15.wav" id="4_isg86"]
+[ext_resource type="AudioStream" uid="uid://cj7obxxqadxbw" path="res://assets/Sounds/commence.wav" id="5_2ash4"]
+[ext_resource type="AudioStream" uid="uid://b6urcqjl7oaas" path="res://assets/Sounds/Music/Azimuth (Loopable).wav" id="6_482cg"]
 
 [node name="sound_controller" type="Node3D"]
 script = ExtResource("1_n7bxa")
-sound_array = Array[AudioStreamWAV]([ExtResource("2_tpces")])
+sound_array = Array[AudioStreamWAV]([ExtResource("2_tpces"), ExtResource("3_rywon"), ExtResource("4_isg86"), ExtResource("5_2ash4")])
+music_array = Array[AudioStreamWAV]([ExtResource("6_482cg")])
 
 [node name="FX_Container" type="Node" parent="."]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="FX_Container"]
 
-[node name="MusicStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="Music_Container" type="Node" parent="."]
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer3D" parent="Music_Container"]
